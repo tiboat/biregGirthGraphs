@@ -1,6 +1,6 @@
 # regToBireg
 
-This directory contains code to try to construct $(\{r,m\};g)$-graphs based on $r$-regular graphs. Given a list of $r$-regular graphs, $m$, $g$ and the range $[minN, maxN]$ in which the order of the $(\{r,m\};g)$-graph should be, the code loops over the list. For each $r$-regular graph $G$ it first checks three necessary conditions on the order, girth and diameter of $G$, to make it feasible to obtain an $(\{r,m\};g)$-graph with order $n \in [minN, maxN]$. Only if these three conditions are met, then the construction is tried. The construction deletes a limited set of edges and connects the vertices which lost an edge to either one or two added vertices, which will have degree $m$. If $m$ is even, one vertex of degree $m$ is added. If $m$ is odd, two vertices of degree $m$ are added.
+This directory contains code to try to construct $(\lbrace r,m\rbrace ;g)$-graphs based on $r$-regular graphs. Given a list of $r$-regular graphs, $m$, $g$ and the range $[minN, maxN]$ in which the order of the $(\lbrace r,m\rbrace ;g)$-graph should be, the code loops over the list. For each $r$-regular graph $G$ it first checks three necessary conditions on the order, girth and diameter of $G$, to make it feasible to obtain an $(\lbrace r,m\rbrace ;g)$-graph with order $n \in [minN, maxN]$. Only if these three conditions are met, then the construction is tried. The construction deletes a limited set of edges and connects the vertices which lost an edge to either one or two added vertices, which will have degree $m$. If $m$ is even, one vertex of degree $m$ is added. If $m$ is odd, two vertices of degree $m$ are added.
 
 ## Data
 
@@ -17,7 +17,7 @@ Unzip these files in order to use the lists inside of them.
 
 ### Obtained record graphs
 
-The directory [found_graphs](found_graphs/) contains $(\{r,m\};g)$-graphs encoded in graph6 format of smaller order than we found in the literature. Each graph is stored in a different file formatted as `n<n>_r<r>_m<m>_g<g>.g6`, e.g. `n545_r3_m4_g14.g6`.
+The directory [found_graphs](found_graphs/) contains $(\lbrace r,m\rbrace ;g)$-graphs encoded in graph6 format of smaller order than we found in the literature. Each graph is stored in a different file formatted as `n<n>_r<r>_m<m>_g<g>.g6`, e.g. `n545_r3_m4_g14.g6`.
 
 
 ## Code
@@ -41,10 +41,10 @@ where `<list_file>` is the list of $r$-regular graphs in graph6 format and `<r>`
 ```
 cat graph_lists/cubicvt502-600_graph6.g6 | ./regToBiregExec 3 4 14 328 619
 ````
-This goes through the list of $3$-regular vertex-transitive graphs of order in $[502,600]$ in order to try to construct a $(\{3,4\};14)$-graph of order $n \in [328, 619]$. (Note that the `minN` and `maxN` values are larger than needed in this case, since the construction only adds one vertex.)
+This goes through the list of $3$-regular vertex-transitive graphs of order in $[502,600]$ in order to try to construct a $(\lbrace 3,4\rbrace ;14)$-graph of order $n \in [328, 619]$. (Note that the `minN` and `maxN` values are larger than needed in this case, since the construction only adds one vertex.)
 
 ### Output
-The code outputs the order, girth and diameter of the regular graphs that satisfy the three conditions. If an $(\{r,m\};g)$-graph of order $n \in [minN, maxN]$ is found by the construction, this graph is printed in graph6 format and the code does not continue trying to construct more graphs.
+The code outputs the order, girth and diameter of the regular graphs that satisfy the three conditions. If an $(\lbrace r,m\rbrace ;g)$-graph of order $n \in [minN, maxN]$ is found by the construction, this graph is printed in graph6 format and the code does not continue trying to construct more graphs.
 
 #### Example
 Executing
