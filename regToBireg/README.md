@@ -7,7 +7,7 @@ This directory contains code to try to construct $(\lbrace r,m\rbrace ;g)$-graph
 ### Lists of regular graphs
 
 This directory contains compressed versions of lists or regular graphs. More precisely, 
- -  Files starting with `cubicvt` contain $3$-regular vertex-transitive graphs, where the two following numbers indicate the range of order of the upcoming files. These where converted from sparse6 to graph6 format from the repository [ cubic-vertextransitive-graphs](https://github.com/kguo-sagecode/cubic-vertextransitive-graphs). Yet, the list originates from [1,2].
+ -  Files starting with `cubicvt` contain $3$-regular vertex-transitive graphs, where the two following numbers indicate the range of order of the upcoming files. These where converted from sparse6 to graph6 format from the repository [ cubic-vertextransitive-graphs](https://github.com/kguo-sagecode/cubic-vertextransitive-graphs). Yet, the data originates from [1,2].
  -  `cubic_symmetric` contains lists of $3$-regular symmetric graphs [3,4].
  -  `quadric` contains lists of $4$-regular graphs which are edge-transitive, arc-transitive or 2-arc-transitive [5,6,7,8,9].
  -  `penta_arc_trans` contains a list of $5$-regular arc-transitive graphs [10].
