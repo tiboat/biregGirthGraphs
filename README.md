@@ -1,6 +1,6 @@
 # Algorithms for finding biregular graphs of given girth
 
-This repository contains code related to finding $(\lbrace r,m\rbrace ;g)$-graphs, which are graphs of girth $g$ with vertices of degree $r$ and $m$.
+This repository contains code related to finding $(\lbrace r,m\rbrace ;g)$-graphs, which are graphs of girth $g$ with vertices of degree $r$ and $m$, where $r<m$.
 
 There are two methods provided in the following subdirectories.
 
