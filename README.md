@@ -4,7 +4,7 @@ This repository contains code related to finding $(\lbrace r,m\rbrace ;g)$-graph
 
 There are two methods provided in the following subdirectories.
 
- - [biregCageGen](biregCageGen/): exhaustively generate all $(\lbrace r,m\rbrace ;g)$-graphs of order $n$, given $r$, $m$, $g$ and $n$.
+ - [biregGirthGen](biregGirthGen/): exhaustively generate all $(\lbrace r,m\rbrace ;g)$-graphs of order $n$, given $r$, $m$, $g$ and $n$.
  - [regToBireg](regToBireg/): try to construct $(\lbrace r,m\rbrace ;g)$-graphs starting from $r$-regular graphs.
 
 For further details on these two methods, we refer to the README in the corresponding subdirectory.
