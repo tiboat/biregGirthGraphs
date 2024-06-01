@@ -137,6 +137,4 @@ The stdout output of all five commands should contain all $(\lbrace 4,6\rbrace ;
 
 ## References
 
-[1]  G. Exoo, B. D. McKay, W. Myrvold, and J. Nadon. Computational determi-
-nation of (3,11) and (4,7) cages. Journal of Discrete Algorithms, 9(2):166–169,
-2011.
+[1]  G. Exoo, B. D. McKay, W. Myrvold, and J. Nadon. Computational determination of (3,11) and (4,7) cages. Journal of Discrete Algorithms, 9(2):166–169, 2011.
