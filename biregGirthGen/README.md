@@ -105,7 +105,7 @@ Now the 17540 intermediary graphs are saved among $N=5$ files. We perform the se
 ```
 ./biregGirthGen 25 4 6 5 16 12 6 2 <res> 5
 ``` 
-for each `<res>` $\in \lbrace 0,1,2,3,4\rbrace $, which comes down to the following.
+for each `<res>` $\in \lbrace 0,1,2,3,4\rbrace $, which comes boils to the following.
 ```
 ./biregGirthGen 25 4 6 5 16 12 6 2 0 5
 ./biregGirthGen 25 4 6 5 16 12 6 2 1 5
