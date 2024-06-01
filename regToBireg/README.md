@@ -17,7 +17,7 @@ Unzip these files in order to use the lists inside of them.
 
 ### Obtained record graphs
 
-The directory [found_graphs](found_graphs/) contains $(\lbrace r,m\rbrace ;g)$-graphs encoded in graph6 format of smaller order than we found in the literature. Each graph is stored in a different file formatted as `n<n>_r<r>_m<m>_g<g>.g6`, e.g. `n545_r3_m4_g14.g6`.
+The directory `found_graphs` contains $(\lbrace r,m\rbrace ;g)$-graphs encoded in graph6 format of smaller order than we found in the literature. Each graph is stored in a different file formatted as `n<n>_r<r>_m<m>_g<g>.g6`, e.g. `n545_r3_m4_g14.g6`.
 
 
 ## Code
