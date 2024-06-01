@@ -1,4 +1,4 @@
-# Algorithms for finding biregular graphs with given girth
+# Algorithms for finding biregular graphs of given girth
 
 This repository contains code related to finding $(\lbrace r,m\rbrace ;g)$-graphs, which are graphs of girth $g$ with vertices of degree $r$ and $m$.
 
