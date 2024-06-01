@@ -1,0 +1,12 @@
+# Executables
+biregGirthGen/biregGirthGen
+biregGirthGen/biregGirthGen-profiler
+biregGirthGen/biregGirthGen-128
+biregGirthGen/biregGirthGen-128-profiler
+biregGirthGen/biregGirthGen-128-array
+biregGirthGen/biregGirthGen-128-array-profiler
+
+regToBireg/regToBiregExec
+
+# audit files
+biregGirthGen/audit/
