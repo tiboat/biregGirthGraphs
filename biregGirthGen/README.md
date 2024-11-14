@@ -24,7 +24,14 @@ This directory contains exhaustive lists of $(\lbrace r,m\rbrace ;g)$-cages (whi
 
 ### Compilation
 
-In order to execute this code, one should first compile. There are several options to compile.
+First configure and compile nauty. Go to the nauty directory (`biregGirthGraphs/nauty/`) and execute the following two commands.
+
+```
+./configure
+make
+```
+
+To compile biregGirthGen itself, there are several options.
 
  - `make biregGirth`: Creates the `biregGirthGen` executable supporting up to and including 64 vertices.
  - `make biregGirth-128`: Creates the `biregGirthGen-128` executable supporting up to and including 128 vertices.

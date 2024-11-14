@@ -1,0 +1,162 @@
+n=10 (3,5) diam=2
+num vertices at pairwise distance at least 3: 1
+num edges at pairwise distance at least 3: 1
+n=14 (3,6) diam=3
+num vertices at pairwise distance at least 3: 2
+num edges at pairwise distance at least 3: 1
+n=19 (4,5) diam=3
+num vertices at pairwise distance at least 3: 3
+num edges at pairwise distance at least 3: 2
+n=24 (3,7) diam=4
+num vertices at pairwise distance at least 4: 2
+num edges at pairwise distance at least 4: 2
+n=26 (4,6) diam=3
+num vertices at pairwise distance at least 3: 2
+num edges at pairwise distance at least 3: 1
+n=30 (5,5) diam=3
+num vertices at pairwise distance at least 3: 3
+num edges at pairwise distance at least 3: 3
+n=30 (5,5) diam=3
+num vertices at pairwise distance at least 3: 3
+num edges at pairwise distance at least 3: 1
+n=30 (5,5) diam=3
+num vertices at pairwise distance at least 3: 5
+num edges at pairwise distance at least 3: 2
+n=30 (5,5) diam=3
+num vertices at pairwise distance at least 3: 2
+num edges at pairwise distance at least 3: 1
+n=30 (3,8) diam=4
+num vertices at pairwise distance at least 4: 5
+num edges at pairwise distance at least 4: 1
+n=42 (5,6) diam=3
+num vertices at pairwise distance at least 3: 2
+num edges at pairwise distance at least 3: 1
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 3
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 3
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 3
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 3
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 3
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 3
+num edges at pairwise distance at least 5: 3
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=58 (3,9) diam=6
+num vertices at pairwise distance at least 5: 4
+num edges at pairwise distance at least 5: 2
+n=67 (4,7) diam=5
+num vertices at pairwise distance at least 4: 5
+num edges at pairwise distance at least 4: 3
+n=70 (3,10) diam=6
+num vertices at pairwise distance at least 5: 5
+num edges at pairwise distance at least 5: 5
+n=70 (3,10) diam=6
+num vertices at pairwise distance at least 5: 5
+num edges at pairwise distance at least 5: 3
+n=70 (3,10) diam=6
+num vertices at pairwise distance at least 5: 5
+num edges at pairwise distance at least 5: 3
+n=80 (4,8) diam=4
+num vertices at pairwise distance at least 4: 10
+num edges at pairwise distance at least 4: 1
+n=112 (3,11) diam=8
+num vertices at pairwise distance at least 6: 4
+num edges at pairwise distance at least 6: 4
+n=126 (3,12) diam=6
+num vertices at pairwise distance at least 6: 9
+num edges at pairwise distance at least 6: 1
+n=170 (5,8) diam=4
+num vertices at pairwise distance at least 4: 17
+num edges at pairwise distance at least 4: 1
+n=272 (3,13) diam=8
+num vertices at pairwise distance at least 7: 6
+num edges at pairwise distance at least 7: 3
+n=275 (4,9) diam=6
+num vertices at pairwise distance at least 5: 8
+num edges at pairwise distance at least 5: 5
+n=384 (4,10) diam=7
+num vertices at pairwise distance at least 5: 16
+num edges at pairwise distance at least 5: 8
+n=384 (3,14) diam=10
+num vertices at pairwise distance at least 7: 16
+num edges at pairwise distance at least 7: 12
+n=620 (3,15) diam=10
+num vertices at pairwise distance at least 8: 10
+num edges at pairwise distance at least 8: 6
+n=728 (4,12) diam=6
+num vertices at pairwise distance at least 6: 28
+num edges at pairwise distance at least 6: 1
+n=960 (3,16) diam=11
+num vertices at pairwise distance at least 8: 22
+num edges at pairwise distance at least 8: 10
+n=1296 (5,10) diam=7
+num vertices at pairwise distance at least 5: 35
+num edges at pairwise distance at least 5: 24
+n=2176 (3,17) diam=13
+num vertices at pairwise distance at least 9: 20
+num edges at pairwise distance at least 9: 13
+n=2560 (3,18) diam=14
+num vertices at pairwise distance at least 9: 23
+num edges at pairwise distance at least 9: 16
+n=2640 (3,18) diam=14
+num vertices at pairwise distance at least 9: 23
+num edges at pairwise distance at least 9: 17
+n=4324 (3,19) diam=14
+num vertices at pairwise distance at least 10: 25
+num edges at pairwise distance at least 10: 17
+n=152 (5,7) diam=6
+num vertices at pairwise distance at least 4: 9
+num edges at pairwise distance at least 4: 8
+n=2688 (5,11) diam=10
+num vertices at pairwise distance at least 6: 25
+num edges at pairwise distance at least 6: 32
+n=2730 (5,12) diam=16
+num vertices at pairwise distance at least 10: 46
+num edges at pairwise distance at least 10: 1
+n=5376 (3,20) diam=16
+num vertices at pairwise distance at least 10: 34
+num edges at pairwise distance at least 10: 31
+n=6048 (3,20) diam=15
+num vertices at pairwise distance at least 10: 38
+num edges at pairwise distance at least 10: 20

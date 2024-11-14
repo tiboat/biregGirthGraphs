@@ -1,8 +1,14 @@
 compiler=gcc
-flags= -lm -mcmodel=medium -O3 -march=native #-fsanitize=address
+flags= -lm -O4 -march=native -no-pie
 
-# You can adapt DMAXN according to which maximum graph order you would like to perform regToBireg.
-# E.g. if the max order would be 500, then setting DMAXN to 512 would increase the performance.
+
+all: regToBireg regToBiregAddEdge
+
 regToBireg: regToBireg.c bitset
-	$(compiler) -g -o regToBiregExec regToBireg.c bitset/bitset.c ../nauty/gtools.c ../nauty/nautyL.a -DMAXN=2048 -DWORDSIZE=64 $(flags)
+	$(compiler) -g -o regToBiregExec regToBireg.c bitset/bitset.c ../nauty/gtools.c ../nauty/nauty.a $(flags)
 
+regToBiregAddEdge: regToBiregAddEdge.c
+	$(compiler) -g -o regToBiregAddEdgeExec regToBiregAddEdge.c ../nauty/gtools.c ../nauty/nauty.a $(flags)
+
+clean:
+	rm regToBiregExec regToBiregAddEdgeExec

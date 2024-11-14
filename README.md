@@ -1,13 +1,14 @@
-# Algorithms for finding biregular graphs of given girth
+# Computational methods for finding bi-regular graphs of given girth
 
-This repository contains code related to finding $(\lbrace r,m\rbrace ;g)$-graphs, which are graphs of girth $g$ with vertices of degree $r$ and $m$, where $r < m$.
+This repository contains code related to finding $(\lbrace r,m\rbrace ;g)$-graphs, which are graphs of girth $g$ with vertices of degree $r$ and $m$, where $r < m$. This code is related to "J. Goedgebeur, J. Jooken and T. Van den Eede. Computational methods for finding bi-regular cages, manuscript."
 
-There are two methods provided in the following subdirectories.
+There are three methods provided in the following subdirectories.
 
  - `biregGirthGen`: exhaustively generate all $(\lbrace r,m\rbrace ;g)$-graphs of order $n$, given $r$, $m$, $g$ and $n$.
  - `regToBireg`: try to construct $(\lbrace r,m\rbrace ;g)$-graphs starting from $r$-regular graphs.
+  - `calcMaxAtMinDist`: calculate the maximum amount of vertices or edges at miminimum pairwise distance $\left\lceil g/2\right\rceil$ in an $(r,g)$-graph ($=$ $r$-regular graph of girth $g$).
 
-For further details on these two methods, we refer to the README in the corresponding subdirectory.
+For further details on these three methods, we refer to the README in the corresponding subdirectory.
 
 
 ## Resources
@@ -22,4 +23,4 @@ Parts of the code are taken from or based on the following resources.
 
 Tibo Van den Eede
 
-E-mail: tibo [dot] vandeneede [at] student [dot] kuleuven [dot] be
+E-mail: tibo [dot] vandeneede [at] kuleuven [dot] be

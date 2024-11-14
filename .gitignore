@@ -8,5 +8,7 @@ biregGirthGen/biregGirthGen-128-array-profiler
 
 regToBireg/regToBiregExec
 
+calcMaxAtMinDist/calcMaxAtMinDistExec
+
 # audit files
 biregGirthGen/audit/

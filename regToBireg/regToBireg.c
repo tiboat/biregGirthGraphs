@@ -17,7 +17,7 @@
 #define USAGE \
 "\nUsage:./regToBiregExec r m girth minN maxN\n\n"
 
-#define MAXEDGES (MAXN*(MAXN-1) >> 1)
+
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define EVEN(n) (n % 2 == 0)
 #define ODD(n) (n % 2 == 1)
@@ -29,21 +29,21 @@ struct edge { int v1,v2; };
  *  Global variables
  ***********************************************/
 
-struct edge edges [MAXEDGES];
+struct edge *edges;
 
-int distEdgeToVertex[MAXEDGES][MAXN];
-bitset_t* possibleEdges[MAXEDGES];
+int **distEdgeToVertex;
+bitset_t **possibleEdges;
 
 int leastGirthWanted;
-
 bool foundBiregGraph = false;
+int maxm;
 
 //  Macro's for nauty representation
-#define FOREACH(element,nautySet)\
- for(int element = nextelement((nautySet),MAXM,-1); (element) >= 0;\
- (element) = nextelement((nautySet),MAXM,(element)))
-#define REMOVEONEEDGE(g,i,j,MAXM)\
- DELELEMENT(GRAPHROW(g,i,MAXM),j); DELELEMENT(GRAPHROW(g,j,MAXM),i)
+#define FOREACH(element,nautySet,maxm)\
+ for(int element = nextelement((nautySet),maxm,-1); (element) >= 0;\
+ (element) = nextelement((nautySet),maxm,(element)))
+#define REMOVEONEEDGE(g,i,j,maxm)\
+ DELELEMENT(GRAPHROW(g,i,maxm),j); DELELEMENT(GRAPHROW(g,j,maxm),i)
 
 
 
@@ -93,66 +93,12 @@ int getNumVerticesComb(int r, int m, int g, int t, int config[]) {
     return sum;
 }
 
-
-// Based on GenK2
-int getNumberOfVertices(const char * graphString) {
-    if(strlen(graphString) == 0){
-        printf("Error: String is empty.\n");
-        return -1;
-    }
-    else if((graphString[0] < 63 || graphString[0] > 126) &&
-            graphString[0] != '>') {
-        printf("Error: Invalid start of graphstring.\n");
-        return -1;
-    }
-
-    int index = 0;
-
-    // Skip >>graph6<< header.
-    if (graphString[index] == '>') {
-        index += 10;
-    }
-
-    //	If first character is not 126 its value - 63 is the number of vertices.
-    if(graphString[index] < 126) { // 0 <= n <= 62
-        return (int) graphString[index] - 63;
-    }
-
-        //	If first character is 126 and second not 126. Subtract 63 from the
-        //	second, third and fourth characters and concatenate them to get
-        //	the 18-bit binary form of the number of vertices.
-    else if(graphString[++index] < 126) { // 63 <= n <= 258047
-        int number = 0;
-        for(int i = 2; i >= 0; i--) {
-            number |= (graphString[index++] - 63) << i*6;
-        }
-        return number;
-    }
-
-        //	If both first and second character are 126. Subtract 63 from the
-        //	third to eight characters and concatenate them to get the 36-bit
-        //	binary form of the number of vertices.
-    else if (graphString[++index] < 126) { // 258048 <= n <= 68719476735
-        int number = 0;
-        for (int i = 5; i >= 0; i--) {
-            number |= (graphString[index++] - 63) << i*6;
-        }
-        return number;
-    }
-
-    else {
-        fprintf(stderr,
-                "Error: Format only works for graphs up to 68719476735 vertices.\n");
-        return -1;
-    }
-}
-
 // Sets the edges global variables to the edges of graph g with order n.
 // Returns the number of edges in g.
 int setEdges(graph *g, int n) {
     int count = 0;
     for(int v = 0; v < n; v++) {
-        FOREACH(nbr, GRAPHROW(g, v, MAXM)) {
+        FOREACH(nbr, GRAPHROW(g, v, maxm),maxm) {
             if (nbr > v) {
                 struct edge newEdge = { .v1 = v, .v2 = nbr };
                 edges[count++] = newEdge;
@@ -213,24 +159,24 @@ void tryAddingEdgesEvenM(graph *g, int* chosenEdges, int numEdgesToAdd, int newV
     int newGirth;
 
     for (int i = 0; i < numEdgesToAdd; i++) {
-        REMOVEONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, MAXM);
-        ADDONEEDGE(g, newV1, edges[chosenEdges[i]].v1, MAXM);
-        ADDONEEDGE(g, newV1, edges[chosenEdges[i]].v2, MAXM);
+        REMOVEONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, maxm);
+        ADDONEEDGE(g, newV1, edges[chosenEdges[i]].v1, maxm);
+        ADDONEEDGE(g, newV1, edges[chosenEdges[i]].v2, maxm);
     }
 
-    newGirth = girth(g, MAXM, newNumVertices);
+    newGirth = girth(g, maxm, newNumVertices);
 
     if(newGirth >= leastGirthWanted) {
         foundBiregGraph = true;
         printf("n, new girth: %d, %d\n", newNumVertices, newGirth);
-        char *g6String = ntog6(g,MAXM,newNumVertices);
+        char *g6String = ntos6(g,maxm,newNumVertices);
         printf("%s", g6String);
     }
 
     for (int i = 0; i < numEdgesToAdd; i++) {
-        ADDONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, MAXM);
-        REMOVEONEEDGE(g, newV1, edges[chosenEdges[i]].v1, MAXM);
-        REMOVEONEEDGE(g, newV1, edges[chosenEdges[i]].v2, MAXM);
+        ADDONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, maxm);
+        REMOVEONEEDGE(g, newV1, edges[chosenEdges[i]].v1, maxm);
+        REMOVEONEEDGE(g, newV1, edges[chosenEdges[i]].v2, maxm);
     }
 }
 
@@ -240,10 +186,10 @@ void tryAddingEdgesEvenM(graph *g, int* chosenEdges, int numEdgesToAdd, int newV
 void tryAddingEdgesOddM(graph *g, int* chosenEdges, int numEdgesToAdd, int newV1, int newV2, int newNumVertices) {
     int newGirth;
 
-    ADDONEEDGE(g, newV1, newV2, MAXM);
+    ADDONEEDGE(g, newV1, newV2, maxm);
 
     for (int i = 0; i < numEdgesToAdd; i++) {
-        REMOVEONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, MAXM);
+        REMOVEONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, maxm);
     }
 
     // Finding all subsets based on ChatGPT
@@ -251,40 +197,42 @@ void tryAddingEdgesOddM(graph *g, int* chosenEdges, int numEdgesToAdd, int newV1
     for (int subsetMask = 0; subsetMask < numSubsets && !foundBiregGraph; subsetMask++) {
         for (int j = 0; j < numEdgesToAdd; j++) {
             if ((subsetMask & (1 << j)) == 0) {
-                ADDONEEDGE(g, newV1, edges[chosenEdges[j]].v1, MAXM);
-                ADDONEEDGE(g, newV2, edges[chosenEdges[j]].v2, MAXM);
+                ADDONEEDGE(g, newV1, edges[chosenEdges[j]].v1, maxm);
+                ADDONEEDGE(g, newV2, edges[chosenEdges[j]].v2, maxm);
             } else {
-                ADDONEEDGE(g, newV1, edges[chosenEdges[j]].v2, MAXM);
-                ADDONEEDGE(g, newV2, edges[chosenEdges[j]].v1, MAXM);
+                ADDONEEDGE(g, newV1, edges[chosenEdges[j]].v2, maxm);
+                ADDONEEDGE(g, newV2, edges[chosenEdges[j]].v1, maxm);
             }
         }
 
-        newGirth = girth(g, MAXM, newNumVertices);
+        newGirth = girth(g, maxm, newNumVertices);
 
         if (newGirth >= leastGirthWanted) {
             foundBiregGraph = true;
             printf("n, new girth: %d, %d\n", newNumVertices, newGirth);
-            char *g6String = ntog6(g,MAXM,newNumVertices);
+            char *g6String = ntos6(g,maxm,newNumVertices);
             printf("%s", g6String);
         }
 
         for (int j = 0; j < numEdgesToAdd; j++) {
             if ((subsetMask & (1 << j)) == 0) {
-                REMOVEONEEDGE(g, newV1, edges[chosenEdges[j]].v1, MAXM);
-                REMOVEONEEDGE(g, newV2, edges[chosenEdges[j]].v2, MAXM);
+                REMOVEONEEDGE(g, newV1, edges[chosenEdges[j]].v1, maxm);
+                REMOVEONEEDGE(g, newV2, edges[chosenEdges[j]].v2, maxm);
             } else {
-                REMOVEONEEDGE(g, newV1, edges[chosenEdges[j]].v2, MAXM);
-                REMOVEONEEDGE(g, newV2, edges[chosenEdges[j]].v1, MAXM);
+                REMOVEONEEDGE(g, newV1, edges[chosenEdges[j]].v2, maxm);
+                REMOVEONEEDGE(g, newV2, edges[chosenEdges[j]].v1, maxm);
             }
         }
     }
 
     for (int i = 0; i < numEdgesToAdd; i++) {
-        ADDONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, MAXM);
+        ADDONEEDGE(g, edges[chosenEdges[i]].v1, edges[chosenEdges[i]].v2, maxm);
     }
 
-    REMOVEONEEDGE(g, newV1, newV2, MAXM);
+    REMOVEONEEDGE(g, newV1, newV2, maxm);
 }
+
+
 
 // Try the construction
 void makeBiregular(graph *g, int n, int r, int m) {
@@ -304,7 +252,7 @@ void makeBiregular(graph *g, int n, int r, int m) {
 
     // Calculate the distances between the edges
     for (int e1 = 0; e1 < nOfEdges; e1++) {
-        find_dist2(g, MAXM, n, edges[e1].v1, edges[e1].v2, distEdgeToVertex[e1]);
+        find_dist2(g, maxm, n, edges[e1].v1, edges[e1].v2, distEdgeToVertex[e1]);
         possibleEdges[e1] = bitset_create_with_capacity(nOfEdges);
         int ctr = 0;
         for (int e2 = 0; e2 < nOfEdges; e2++) {
@@ -317,7 +265,6 @@ void makeBiregular(graph *g, int n, int r, int m) {
             bitset_set(enoughPossibleEdges, e1);
         }
     }
-
 
     // Calculate the set of edges that have enough edges at minDist or further.
     bool changed = true;
@@ -333,9 +280,13 @@ void makeBiregular(graph *g, int n, int r, int m) {
         }
     }
 
-
-    if (bitset_count(enoughPossibleEdges) < numEdgesToAdd)
+    if (bitset_count(enoughPossibleEdges) < numEdgesToAdd) {
+        for (int e = 0; e < nOfEdges; e++) {
+            bitset_free(possibleEdges[e]);
+        }
+        bitset_free(enoughPossibleEdges);
         return;
+    }
 
     // Get first possible edge
     size_t firstEdge = 0;
@@ -363,7 +314,6 @@ void makeBiregular(graph *g, int n, int r, int m) {
 
         if (bitset_empty(intersecPossibleEdges[numChosenEdges - 1]))
             valid = false;
-
 
         // Logic to iterate over the possible edges
         bool goBack = true;
@@ -420,7 +370,6 @@ void makeBiregular(graph *g, int n, int r, int m) {
 
 
 
-
 int main(int argc, char ** argv) {
     if (argc != 6) {
         // Print the usage information and exit with an error code
@@ -428,20 +377,15 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
-    // Ask for r because of performance improvement
     int r = atoi(argv[1]);
     int m = atoi(argv[2]);
     leastGirthWanted = atoi(argv[3]);
     int minVertices = atoi(argv[4]);
     int maxVertices = atoi(argv[5]);
 
-    graph g[MAXN*MAXM];
     int n,initialGirth;
     int radius, diameter;
-    unsigned long es;
-    int mincount, maxdeg, maxcount;
-    boolean eulerian;
-    int minGirth, lowerBound, upperBound;
+    int lowerBound, upperBound;
 
     lowerBound = m % 2 ? minVertices-2 : minVertices-1;
     upperBound = m % 2 ? maxVertices-3 : maxVertices-2;
@@ -449,15 +393,48 @@ int main(int argc, char ** argv) {
     //  Start looping over lines of stdin.
     char *graphString = NULL;
     size_t size;
-    int ctrGraphs = 0;
-    int ctr = 0;
     int ctrUnfiltered = 0;
-    int ctrGraphsRightVertices = 0;
-    int ctrGirth = 0;
     int ctrAllGraphs = 0;
-    while(getline(&graphString, &size, stdin) != -1) {
 
-        n = getNumberOfVertices(graphString);
+    int maxn = maxVertices;
+    int maxEdges = (maxn*r >> 1) + m;
+
+    // Do mallocs
+    distEdgeToVertex = (int **)malloc(maxEdges * sizeof(int *));
+    if (distEdgeToVertex == NULL) {
+        printf("Memory allocation dist failed\n");
+        return -1;
+    }
+
+    for (int i = 0; i < maxEdges; i++) {
+        distEdgeToVertex[i] = (int *)malloc(maxn * sizeof(int));
+        if (distEdgeToVertex[i] == NULL) {
+            printf("Memory allocation failed for row %d!\n", i);
+            return -1;
+        }
+    }
+
+    edges = (struct edge*)malloc(maxEdges * sizeof(struct edge));
+    if (edges == NULL) {
+        printf("Memory allocation edges failed\n");
+        return -1;
+    }
+
+    possibleEdges = (bitset_t**)malloc(maxEdges*sizeof(bitset_t*));
+    if (possibleEdges == NULL) {
+        printf("Memory allocation possibleEdges failed\n");
+        return -1;
+    }
+
+    maxm = SETWORDSNEEDED(maxn);
+
+    DYNALLSTAT(graph,g,g_sz);
+    DYNALLOC2(graph,g,g_sz,maxm,maxn,"malloc");
+
+
+    while(getline(&graphString, &size, stdin) != -1) {
+        ctrAllGraphs++;
+        n = graphsize(graphString);
 
         if (n > upperBound)
             break;
@@ -498,16 +475,12 @@ int main(int argc, char ** argv) {
 
         if (n >= lowerBound && n <= upperBound) {
 
-            ctrGraphsRightVertices++;
-
-            stringtograph(graphString,g,MAXM);
-            initialGirth = girth(g, MAXM, n);
+            stringtograph(graphString,g,maxm);
+            initialGirth = girth(g, maxm, n);
             if (initialGirth >= leastGirthWanted) {
 
-                ctrGirth++;
                 // Compute diameter
-                diamstats(g, MAXM, n, &radius, &diameter);
-
+                diamstats(g, maxm, n, &radius, &diameter);
                 int diameterBound = diameter+2;
                 if (ODD(m))
                     diameterBound++;
@@ -519,21 +492,30 @@ int main(int argc, char ** argv) {
                     printf("initial girth=%d\n", initialGirth);
                     printf("initial n=%d\n", n);
 
-
-                     makeBiregular(g, n, r,m);
+                    makeBiregular(g, n, r, m);
 
                     if (foundBiregGraph)
                         break;
-                 }
+                }
             }
         }
-        ctrGraphs++;
     }
 
-    // printf("filtered %d graphs out of %d\n", ctrGraphsRightVertices-ctrUnfiltered, ctrGraphsRightVertices);
+    printf("filtered %d graphs out of %d\n", ctrAllGraphs-ctrUnfiltered, ctrAllGraphs);
+
+    free(graphString);
+
+    for (int i = 0; i < maxEdges; i++) {
+        free(distEdgeToVertex[i]);
+    }
+    free(distEdgeToVertex);
+    free(edges);
+    free(possibleEdges);
 
     return 0;
 }
+
+
 
 
 
